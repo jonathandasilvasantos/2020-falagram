@@ -1,6 +1,8 @@
 # .gitignore from: https://github.com/github/gitignore/blob/master/Python.gitignore
 
 
+# Virtual Env
+virt/
 # Ignores Pyrogram app key
 config.ini
 
