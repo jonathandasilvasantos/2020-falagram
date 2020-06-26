@@ -17,8 +17,11 @@ import sox
 from ..app.utils import get_temp_path
 from random import randint, random, seed
 
-def change_voice(audiofile_path, user_id, message_id, samplerate=22000, n_channels=2, file_extension=".mp3"):
 
+
+
+def change_voice(audiofile_path, user_id, message_id, samplerate=22000, n_channels=2, file_extension=".mp3"):
+    seed(user_id)
     tfm = sox.Transformer()
     tfm.pitch(randint(-3, 3))
     tfm.overdrive(randint(0, 10))
@@ -27,8 +30,9 @@ def change_voice(audiofile_path, user_id, message_id, samplerate=22000, n_channe
     tfm.bass(randint(-10,10))
     tfm.treble(randint(-10,10))
     tfm.norm()
-    tfm.convert(samplerate=samplerate, n_channels=n_channels)
+    #tfm.convert(samplerate=samplerate, n_channels=n_channels)
 
     output_path = get_temp_path(str(message_id) + file_extension)
     tfm.build(audiofile_path, output_path)
+    del(tfm)
     return output_path

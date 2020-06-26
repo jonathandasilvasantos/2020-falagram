@@ -22,12 +22,13 @@ Para instalação no Windows, consulte o site:
 
 ## Instalação
 Para instalar o Falagram, primeiramente clone o projeto:
-``cd ~/
-git clone https://github.com/jonathandasilvasantos/falagram.git``
+
+`cd ~/`
+`git clone https://github.com/jonathandasilvasantos/falagram.git`
 
 Uma vez clonado o repositório, entramos em seu diretório e executamos sua instalação:
-``cd Falagram
-python3 setup.py install``
+`cd Falagram`
+`python3 setup.py install`
 
 ## Chave de acesso para a API do Telegram.
 Antes de usar o Falagram, é preciso solicitar acesso à API do Telegram.
