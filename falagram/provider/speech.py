@@ -13,15 +13,22 @@
 
 #    You should have received a copy of the GNU General Public License
 #    along with Falagram.  If not, see <https://www.gnu.org/licenses/>.
-from gtts import gTTS
+from os import system
 from ..app.utils import get_temp_path
 from .personality import change_voice
 
 
 def save(message, lang, samplerate=22000, n_channels=2, file_extension=".mp3"):
-    tts = gTTS(message.text, lang=lang)
+    textfile_path = get_temp_path('speech.txt')
+    aifffile_path = get_temp_path('speech.aiff')
     audiofile_path = get_temp_path('speech' + file_extension)
-    tts.save(audiofile_path)
+    text_file = open(textfile_path, "w")
+    text_file.write(message.text)
+    text_file.close()
+    system("say -f "+ textfile_path + " -o " + aifffile_path)
+    system("rm "+ audiofile_path)
+    system("rm "+ textfile_path)
+    system("ffmpeg -i " + aifffile_path + " " + audiofile_path + " -loglevel quiet")
     try:
         changed_voice_file = change_voice(audiofile_path, message.from_user.id, message.message_id, message.from_user.id)
         return changed_voice_file

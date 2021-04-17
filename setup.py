@@ -15,7 +15,7 @@ setup(
     'falagram.provider.composer',
     'falagram.provider.personality'
     ],
-    install_requires=[ "sox==1.3.7", "gTTS>=2.1.1", "Pyrogram==0.17.1", "click==7.1.2", "pygame==1.9.6"],
+    install_requires=[ "sox==1.3.7", "gTTS", "Pyrogram==0.17.1", "click==7.1.2", "pygame"],
     packages=find_packages(),
     entry_points={
         'console_scripts': [
