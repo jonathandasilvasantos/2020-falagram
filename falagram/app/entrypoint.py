@@ -15,14 +15,17 @@
 #    along with Falagram.  If not, see <https://www.gnu.org/licenses/>.
 
 import click
+from ..commands.echo import echo
 from ..commands.history import history
 from ..commands.listen import listen
 from ..commands.chats import chats
 from ..commands.version import version
 
+
 @click.group()
 def cli():
     pass
+cli.add_command(echo)
 cli.add_command(history)
 cli.add_command(listen)
 cli.add_command(chats)

@@ -7,6 +7,7 @@ setup(
     'falagram.app.utils',
     'falagram.app.validator',
     'falagram.app.search',
+    'falagram.commands.echo',
     'falagram.commands.history',
     'falagram.commands.chats',
     'falagram.commands.listen',
@@ -24,7 +25,7 @@ setup(
     },
     package_data={
         # If any package contains *.txt or *.rst files, include them:
-        "": ["*.txt", "*.rst", "*.md"]
+        "": ["*.txt", "*.rst", "*.md", "message.mp3"]
     },
 
     author="Jonathan S. Santos",

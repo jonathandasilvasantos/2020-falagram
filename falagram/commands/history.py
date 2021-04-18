@@ -17,6 +17,7 @@
 import click
 from ..provider.speech import save
 from ..provider.composer import compose
+from ..commands.listen import save_message
 from ..app.utils import get_app, get_temp_path, get_output_path, delete_temporary_files
 from ..app.validator import validate_message, validate_audiofile
 from ..app.search import search_chat
@@ -29,7 +30,8 @@ import os
 @click.option('--limit', '-l', default=25, required=False, help='Numer of messages [25].')
 @click.option('--language', '-lang', type=click.STRING, default='pt', help='Language of the messages. [pt].')
 @click.option('--outputfilename', '-o', type=click.STRING, default='result.mp3', help='Name of the output file. [result.mp3]')
-def history(chatname, chatid, limit, language, outputfilename):
+@click.option('--replay/--no-replay', default=False)
+def history(chatname, chatid, limit, language, outputfilename, replay):
     delete_temporary_files()
     app = get_app()
     with app:
@@ -55,6 +57,11 @@ def history(chatname, chatid, limit, language, outputfilename):
 
     messages.reverse()
     audio_files = []
+    
+    if replay:
+        for message in messages:
+            save_message(message)
+        return
 
     for index, message in enumerate(messages):
         print("Text-to-Speech proccess... ( " + str(index+1) + "/" + str(len(messages)) + " )")
